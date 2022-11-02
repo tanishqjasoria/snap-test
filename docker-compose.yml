@@ -29,7 +29,7 @@ services:
             vpcbr:
                 ipv4_address: 10.5.0.3
     neth_2:
-        image: nethermind
+        image: nethermind/nethermind:1.14.5
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
         volumes:
             - ./neth_2/db/goerli:/nethermind/nethermind_db/condrieu
@@ -46,11 +46,8 @@ services:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
         command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.5.0.4:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
-            - ./config/condrieu.json:/config/genesis/condrieu.json
-            - ./node_2/configs/Condrieu.cfg:/nethermind/configs/Condrieu.cfg
-            - ./config/static-nodes.json:/nethermind/Data/static-nodes.json
-            - ./node_2/db/condrieu:/nethermind/nethermind_db/condrieu
-            - ./node_2/keystore:/nethermind/keystore
+            - ./prysm_2/.eth2:/data
+            - ./prysm_2/secret:/secret
         ports:
             - 0.0.0.0:4002:4000
             - 0.0.0.0:13002:13000
