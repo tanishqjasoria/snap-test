@@ -34,7 +34,9 @@ services:
                 ipv4_address: 10.4.0.3
     neth_2:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None --Network.StaticPeers=["enode://25712ae7bc08011b560d86ead2ed4756da70f2bdbded0493a492f378941a162b862a9f2e0f46728fbf8366425a11b451def38f6918ab90badafb82cfc5b307f1@10.4.0.2:30303"]
+        command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None --Network.StaticPeers="enode://25712ae7bc08011b560d86ead2ed4756da70f2bdbded0493a492f378941a162b862a9f2e0f46728fbf8366425a11b451def38f6918ab90badafb82cfc5b307f1@10.4.0.2:30303"
+        expose:
+            -   30303
         volumes:
             - ./neth_2/db:/nethermind/nethermind_db
             - ./neth_2/keystore:/nethermind/keystore
