@@ -3,7 +3,7 @@ services:
 
     neth_1:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
+        command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None --Sync.SnapServe true
         volumes:
             - ./neth_1/db/goerli:/nethermind/nethermind_db/condrieu
             - ./neth_1/keystore:/nethermind/keystore
@@ -13,6 +13,8 @@ services:
             - 0.0.0.0:3001:3000
         networks:
             vpcbr:
+                ipv4_address: 10.5.0.2
+            vpcin:
                 ipv4_address: 10.5.0.2
 
     prysm_1:
@@ -28,6 +30,8 @@ services:
         networks:
             vpcbr:
                 ipv4_address: 10.5.0.3
+            vpcin:
+                ipv4_address: 10.5.0.3
     neth_2:
         image: nethermindeth/nethermind:snap
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
@@ -35,11 +39,8 @@ services:
             - ./neth_2/db/goerli:/nethermind/nethermind_db/condrieu
             - ./neth_2/keystore:/nethermind/keystore
             - ./neth_2/secret/jwt.hex:/nethermind/secret/jwt.hex
-        ports:
-            - 0.0.0.0:8548:8545
-            - 0.0.0.0:3002:3000
         networks:
-            vpcbr:
+            vpcin:
                 ipv4_address: 10.5.0.4
 
     prysm_2:
@@ -48,12 +49,8 @@ services:
         volumes:
             - ./prysm_2/.eth2:/data
             - ./prysm_2/secret:/secret
-        ports:
-            - 0.0.0.0:4002:4000
-            - 0.0.0.0:13002:13000
-            - 0.0.0.0:12002:12000
         networks:
-            vpcbr:
+            vpcin:
                 ipv4_address: 10.5.0.5
 
 networks:
@@ -62,3 +59,10 @@ networks:
         ipam:
             config:
                 - subnet: 10.5.0.0/16
+    vpcin:
+        driver: bridge
+        internal: true
+        ipam:
+            config:
+                - subnet: 10.5.0.0/16
+
