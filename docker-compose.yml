@@ -50,6 +50,8 @@ services:
             - ./prysm_2/.eth2:/data
             - ./prysm_2/secret:/secret
         networks:
+            vpcbr:
+                ipv4_address: 10.5.0.5
             vpcin:
                 ipv4_address: 10.5.0.5
 
