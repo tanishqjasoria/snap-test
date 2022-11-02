@@ -5,7 +5,7 @@ services:
         image: nethermindeth/nethermind:snap
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None --Sync.SnapServe true
         volumes:
-            - ./neth_1/db/goerli:/nethermind/nethermind_db/condrieu
+            - ./neth_1/db:/nethermind/nethermind_db
             - ./neth_1/keystore:/nethermind/keystore
             - ./neth_1/secret/jwt.hex:/nethermind/secret/jwt.hex
         ports:
@@ -36,7 +36,7 @@ services:
         image: nethermindeth/nethermind:snap
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
         volumes:
-            - ./neth_2/db/goerli:/nethermind/nethermind_db/condrieu
+            - ./neth_2/db:/nethermind/nethermind_db
             - ./neth_2/keystore:/nethermind/keystore
             - ./neth_2/secret/jwt.hex:/nethermind/secret/jwt.hex
         networks:
