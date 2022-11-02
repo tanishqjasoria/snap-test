@@ -15,7 +15,7 @@ services:
             vpcbr:
                 ipv4_address: 10.5.0.2
             vpcin:
-                ipv4_address: 10.5.0.2
+                ipv4_address: 10.4.0.2
 
     prysm_1:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
@@ -31,7 +31,7 @@ services:
             vpcbr:
                 ipv4_address: 10.5.0.3
             vpcin:
-                ipv4_address: 10.5.0.3
+                ipv4_address: 10.4.0.3
     neth_2:
         image: nethermindeth/nethermind:snap
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
@@ -41,7 +41,7 @@ services:
             - ./neth_2/secret/jwt.hex:/nethermind/secret/jwt.hex
         networks:
             vpcin:
-                ipv4_address: 10.5.0.4
+                ipv4_address: 10.4.0.4
 
     prysm_2:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
@@ -53,7 +53,7 @@ services:
             vpcbr:
                 ipv4_address: 10.5.0.5
             vpcin:
-                ipv4_address: 10.5.0.5
+                ipv4_address: 10.4.0.5
 
 networks:
     vpcbr:
@@ -66,5 +66,5 @@ networks:
         internal: true
         ipam:
             config:
-                - subnet: 10.5.0.0/16
+                - subnet: 10.4.0.0/16
 
