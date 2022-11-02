@@ -2,7 +2,7 @@ version: "3.5"
 services:
 
     neth_1:
-        image: nethermind/nethermind:1.14.5
+        image: nethermindeth/nethermind:snap
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
         volumes:
             - ./neth_1/db/goerli:/nethermind/nethermind_db/condrieu
@@ -29,7 +29,7 @@ services:
             vpcbr:
                 ipv4_address: 10.5.0.3
     neth_2:
-        image: nethermind/nethermind:1.14.5
+        image: nethermindeth/nethermind:snap
         command: --config goerli --JsonRpc.Enabled true --JsonRpc.EngineHost=10.5.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Pruning.Mode None
         volumes:
             - ./neth_2/db/goerli:/nethermind/nethermind_db/condrieu
