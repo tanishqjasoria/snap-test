@@ -3,7 +3,9 @@ services:
 
     neth_1:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://f050a4c1a946a5677b0b3bfcc969c74cd341b05e70614548948e54da820eb7e52b05a5a4bf99dab399e816e665ab90ecd54ea896b065494bb5642050774c4b72@10.4.0.12:30303"
+        expose:
+            - 30303
         volumes:
             - ./neth_1/db:/nethermind/nethermind_db
             - ./neth_1/keystore:/nethermind/keystore
@@ -31,7 +33,7 @@ services:
                 ipv4_address: 10.4.0.3
     neth_2:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://f050a4c1a946a5677b0b3bfcc969c74cd341b05e70614548948e54da820eb7e52b05a5a4bf99dab399e816e665ab90ecd54ea896b065494bb5642050774c4b72@10.4.0.12:30303"
         expose:
             -   30303
         volumes:
@@ -58,7 +60,7 @@ services:
 
     neth_3:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.6 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.6 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://f050a4c1a946a5677b0b3bfcc969c74cd341b05e70614548948e54da820eb7e52b05a5a4bf99dab399e816e665ab90ecd54ea896b065494bb5642050774c4b72@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -85,7 +87,7 @@ services:
 
     neth_4:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.8 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.8 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://f050a4c1a946a5677b0b3bfcc969c74cd341b05e70614548948e54da820eb7e52b05a5a4bf99dab399e816e665ab90ecd54ea896b065494bb5642050774c4b72@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -112,7 +114,7 @@ services:
 
     neth_5:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.10 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.10 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://f050a4c1a946a5677b0b3bfcc969c74cd341b05e70614548948e54da820eb7e52b05a5a4bf99dab399e816e665ab90ecd54ea896b065494bb5642050774c4b72@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -139,7 +141,7 @@ services:
 
     neth_6:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers=""enode://5b05d919ab67448a42d2e12fa690f2a4cb4269ed210b5142fff0ce3b09021d97036f4f94581b20cc3cf4802be3f9ae2ba4b0c5201b7c1b3f37007c74feb99064@10.4.0.2:30303,enode://d811bb5b62c3ad907f5887971ed90cb329419e3901e959aa988bdc5a8daf5a1e5a8683f5504c7526ec0c0ed442a2af2e5edd1212e07ad4bdb851c0df15b7391b@10.4.0.4:30303,enode://b20c31405b66c9646e52728ab9367e0bb01997d0865d55c128878069ac09afea0031ca02ae714d8d8f6a3929e02369b40bc483234201d389310a33dbd4242ed8@10.4.0.6:30303,enode://5d5f11ed48a89a62c169c80c5532da99da5b4bc237c5b297cae1e8dd8aeb672c34d478f5279ce96174bb9f17525ecec8dfa345afb9b24b5fb299bdabf1893fc4@10.4.0.8:30303,enode://927486899751433d417ccf54d34195d8b78317b68b9d278ab77ac886e484329a312967987dbb2efdfcb1ade3ca5993ec380b6d04dbecd9df1eda33c65820b6a6@10.4.0.10:30303"
         expose:
             - 30303
         volumes:
@@ -159,8 +161,6 @@ services:
             - ./prysm_6/.eth2:/data
             - ./prysm_6/secret:/secret
         networks:
-            vpcbr:
-                ipv4_address: 10.5.0.13
             vpcin:
                 ipv4_address: 10.4.0.13
 
