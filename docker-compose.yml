@@ -3,9 +3,7 @@ services:
 
     neth_1:
         image: nethermindeth/nethermind:snap
-        command:
-            - --config goerli --Pruning.Mode None --Sync.SnapServe true
-            - --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         volumes:
             - ./neth_1/db:/nethermind/nethermind_db
             - ./neth_1/keystore:/nethermind/keystore
@@ -18,11 +16,7 @@ services:
 
     prysm_1:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command:
-            - --accept-terms-of-use --prater --datadir=/data
-            - --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.2:8546
-            - --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io
-            - --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
+        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.2:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
             - ./prysm_1/.eth2:/data
             - ./prysm_1/secret:/secret
@@ -37,9 +31,7 @@ services:
                 ipv4_address: 10.4.0.3
     neth_2:
         image: nethermindeth/nethermind:snap
-        command:
-            - --config goerli --Pruning.Mode None --Sync.SnapServe true
-            - --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         expose:
             -   30303
         volumes:
@@ -54,11 +46,7 @@ services:
 
     prysm_2:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command:
-            - --accept-terms-of-use --prater --datadir=/data
-            - --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.4:8546
-            - --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io
-            - --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
+        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.4:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
             - ./prysm_2/.eth2:/data
             - ./prysm_2/secret:/secret
@@ -70,9 +58,7 @@ services:
 
     neth_3:
         image: nethermindeth/nethermind:snap
-        command:
-            - --config goerli --Pruning.Mode None --Sync.SnapServe true
-            - --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.6 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.6 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         expose:
             - 30303
         volumes:
@@ -87,11 +73,7 @@ services:
 
     prysm_3:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command:
-            - --accept-terms-of-use --prater --datadir=/data
-            - --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.6:8546
-            - --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io
-            - --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
+        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.6:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
             - ./prysm_3/.eth2:/data
             - ./prysm_3/secret:/secret
@@ -103,9 +85,7 @@ services:
 
     neth_4:
         image: nethermindeth/nethermind:snap
-        command:
-            - --config goerli --Pruning.Mode None --Sync.SnapServe true
-            - --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.8 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.8 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         expose:
             - 30303
         volumes:
@@ -120,11 +100,7 @@ services:
 
     prysm_4:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command:
-            - --accept-terms-of-use --prater --datadir=/data
-            - --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.8:8546
-            - --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io
-            - --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
+        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.8:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
             - ./prysm_4/.eth2:/data
             - ./prysm_4/secret:/secret
@@ -136,9 +112,7 @@ services:
 
     neth_5:
         image: nethermindeth/nethermind:snap
-        command:
-            - --config goerli --Pruning.Mode None --Sync.SnapServe true
-            - --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.10 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.10 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         expose:
             - 30303
         volumes:
@@ -153,11 +127,7 @@ services:
 
     prysm_5:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command:
-            - --accept-terms-of-use --prater --datadir=/data
-            - --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.10:8546
-            - --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io
-            - --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
+        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.10:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
             - ./prysm_5/.eth2:/data
             - ./prysm_5/secret:/secret
@@ -169,9 +139,7 @@ services:
 
     neth_6:
         image: nethermindeth/nethermind:snap
-        command:
-            - --config goerli --Pruning.Mode None --Sync.SnapServe true
-            - --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         expose:
             - 30303
         volumes:
@@ -186,11 +154,7 @@ services:
 
     prysm_6:
         image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command:
-            - --accept-terms-of-use --prater --datadir=/data
-            - --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.12:8546
-            - --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io
-            - --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
+        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.12:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
         volumes:
             - ./prysm_6/.eth2:/data
             - ./prysm_6/secret:/secret
