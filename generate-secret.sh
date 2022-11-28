@@ -11,3 +11,6 @@ mkdir -p prysm_${i}/secret
 cp jwt.hex neth_${i}/secret/jwt.hex
 cp jwt.hex prysm_${i}/secret/jwt.hex
 done;
+rm -rf prysm.sh
+rm -rf dist
+rm -rf jwt.hex

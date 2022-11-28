@@ -141,7 +141,7 @@ services:
 
     neth_6:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.12--JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
+        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.12 --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex
         expose:
             - 30303
         volumes:
