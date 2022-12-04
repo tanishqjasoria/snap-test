@@ -3,7 +3,7 @@ services:
 
     neth_1:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.2 --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.2 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
+        command: --config xdai --Pruning.Mode None --Network.LocalIp=10.4.0.2 --Sync.SnapServe false --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.2 --JsonRpc.EnginePort 8546  --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -16,24 +16,9 @@ services:
             vpcin:
                 ipv4_address: 10.4.0.2
 
-    prysm_1:
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.2:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
-        volumes:
-            - ./prysm_1/.eth2:/data
-            - ./prysm_1/secret:/secret
-        ports:
-            - 0.0.0.0:4001:4000
-            - 0.0.0.0:13001:13000
-            - 0.0.0.0:12001:12000
-        networks:
-            vpcbr:
-                ipv4_address: 10.5.0.3
-            vpcin:
-                ipv4_address: 10.4.0.3
     neth_2:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.4 --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
+        command: --config xdai --Pruning.Mode None --Network.LocalIp=10.4.0.4 --Sync.SnapServe false --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.4 --JsonRpc.EnginePort 8546  --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
         expose:
             -   30303
         volumes:
@@ -46,21 +31,9 @@ services:
             vpcin:
                 ipv4_address: 10.4.0.4
 
-    prysm_2:
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.4:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
-        volumes:
-            - ./prysm_2/.eth2:/data
-            - ./prysm_2/secret:/secret
-        networks:
-            vpcbr:
-                ipv4_address: 10.5.0.5
-            vpcin:
-                ipv4_address: 10.4.0.5
-
     neth_3:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.6 --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.6 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
+        command: --config xdai --Pruning.Mode None --Network.LocalIp=10.4.0.6 --Sync.SnapServe false --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.6 --JsonRpc.EnginePort 8546  --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -73,21 +46,9 @@ services:
             vpcin:
                 ipv4_address: 10.4.0.6
 
-    prysm_3:
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.6:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
-        volumes:
-            - ./prysm_3/.eth2:/data
-            - ./prysm_3/secret:/secret
-        networks:
-            vpcbr:
-                ipv4_address: 10.5.0.7
-            vpcin:
-                ipv4_address: 10.4.0.7
-
     neth_4:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.8 --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.8 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
+        command: --config xdai --Pruning.Mode None --Network.LocalIp=10.4.0.8 --Sync.SnapServe false --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.8 --JsonRpc.EnginePort 8546  --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -100,21 +61,9 @@ services:
             vpcin:
                 ipv4_address: 10.4.0.8
 
-    prysm_4:
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.8:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
-        volumes:
-            - ./prysm_4/.eth2:/data
-            - ./prysm_4/secret:/secret
-        networks:
-            vpcbr:
-                ipv4_address: 10.5.0.9
-            vpcin:
-                ipv4_address: 10.4.0.9
-
     neth_5:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.10 --Sync.SnapServe true --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.10 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
+        command: --config xdai --Pruning.Mode None --Network.LocalIp=10.4.0.10 --Sync.SnapServe false --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.10 --JsonRpc.EnginePort 8546  --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -127,21 +76,9 @@ services:
             vpcin:
                 ipv4_address: 10.4.0.10
 
-    prysm_5:
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.10:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
-        volumes:
-            - ./prysm_5/.eth2:/data
-            - ./prysm_5/secret:/secret
-        networks:
-            vpcbr:
-                ipv4_address: 10.5.0.11
-            vpcin:
-                ipv4_address: 10.4.0.11
-
     neth_6:
         image: nethermindeth/nethermind:snap
-        command: --config goerli --Pruning.Mode None --Network.LocalIp=10.4.0.12 --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546 --JsonRpc.JwtSecretFile=secret/jwt.hex --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
+        command: --config xdai --Pruning.Mode None --Network.LocalIp=10.4.0.12 --JsonRpc.Enabled true --JsonRpc.EngineHost=10.4.0.12 --JsonRpc.EnginePort 8546  --Network.StaticPeers="enode://e6ad306eafd00c490447716effae88190bab1acb6d28353b1c242a1aad3fbca49202a2a38ea2a7d44f40a3245cc3c0c6c1c97004981e10077420864ccaf8a749@10.4.0.2:30303,enode://8365bb062e2f53e80bbe6748501e2d44e5b3b08625670d63db180e49552a51b34112b13881623092bc8b887656c8e082cf5b3dbfb1b421f99030705c79407272@10.4.0.4:30303,enode://719b2637fea32dc9ead1ade202b489dd23f6221d02ff2910b581daf05159f0ef8226ab6db0b86f784b58c2e29bad60e3b5eacb683c4584ff0260a91c5c53e323@10.4.0.6:30303,enode://34f70dbeb1d126e952b34f7725ca55ab9e05854cd4abcb1e36210eb7630175efe5634a4733f3d13dea6e2b7d46c9cc7e84e508f28f30a248606ebbe45fe519a9@10.4.0.8:30303,enode://3c2d04b5c4b3b67ac0da26df8d2e4c1b4681c5f93b5dc56e44a9011363d162bce58c74531fffb77f01c5635188f732fc85c18b2f88250dacbd5ecd9b13ff2d63@10.4.0.10:30303,enode://3396396c04acb126014b5917f6feb4ba68573abee65841b466c37a87b9f8de3d21973ba1c239f23d68c1a1a3a393283646bf6f61edc45cebc653da0669ae070a@10.4.0.12:30303"
         expose:
             - 30303
         volumes:
@@ -151,18 +88,6 @@ services:
         networks:
             vpcin:
                 ipv4_address: 10.4.0.12
-
-    prysm_6:
-        image: gcr.io/prysmaticlabs/prysm/beacon-chain:stable
-        command: --accept-terms-of-use --prater --datadir=/data --jwt-secret=/secret/jwt.hex --execution-endpoint=http://10.4.0.12:8546 --checkpoint-sync-url=https://goerli.checkpoint-sync.ethdevops.io --genesis-beacon-api-url=https://goerli.checkpoint-sync.ethdevops.io
-        volumes:
-            - ./prysm_6/.eth2:/data
-            - ./prysm_6/secret:/secret
-        networks:
-            vpcbr:
-                ipv4_address: 10.5.0.13
-            vpcin:
-                ipv4_address: 10.4.0.13
 
 networks:
     vpcbr:
